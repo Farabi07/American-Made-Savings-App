@@ -1,0 +1,46 @@
+# Ignore Python bytecode
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Ignore virtual environment
+venv/
+env/
+ENV/
+.venv/
+
+# Ignore Django migrations
+*/migrations/
+
+# Ignore SQLite database
+db.sqlite3
+
+# Ignore Django media and static files
+media/
+static/
+
+# Ignore environment files
+.env
+
+
+# Ignore pyenv version
+.python-version
+
+# Ignore IDE configuration files
+.vscode/
+.idea/
+*.iml
+
+# Ignore macOS system files
+.DS_Store
+
+# Ignore node_modules for JavaScript projects
+node_modules/
+
+# Ignore log files
+*.log
+
+# Ignore OS generated files
+Thumbs.db
+Desktop.ini
