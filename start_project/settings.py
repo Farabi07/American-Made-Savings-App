@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     'storages',
     #local
     'authentication.apps.AuthenticationConfig',
+    'product.apps.ProductConfig',
 ]
 SITE_ID = 1
 AUTHENTICATION_BACKENDS = (
