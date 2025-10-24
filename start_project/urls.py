@@ -27,7 +27,8 @@ urlpatterns = [
     path('city/', include('authentication.urls.city_urls')),
     path('subscription/', include('authentication.urls.subscription_urls')),
     path('subscriptions_plan/', include('authentication.urls.subscriptions_plan_urls')),
-	# YOUR PATTERNS
+    # Product module
+    path('product/', include('product.urls.products_urls')),
     path('schema/', SpectacularAPIView.as_view(), name='schema'),
     # Optional UI:
     path('schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
