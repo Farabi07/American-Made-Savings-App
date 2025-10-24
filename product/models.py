@@ -18,6 +18,9 @@ class Product(models.Model):
 
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, related_name="created_products", null=True, blank=True)
     updated_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, related_name="updated_products", null=True, blank=True)
+    class Meta:
+        ordering = ('-id',)
+        verbose_name_plural = 'Products'
 
     def __str__(self):
         return self.name
