@@ -3,6 +3,7 @@ from django.conf import settings
 class Tag(models.TextChoices):
     AMERICAN_MADE = 'AM', 'American Made'
     TARIFF_FREE = 'TF', 'Tariff Free'
+    AUS_T = 'AUS-T', 'Assembled in USA but Tariffed'
     BOTH = 'Both', 'Both'
     NONE = 'None', 'None'
 class Product(models.Model):

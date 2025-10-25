@@ -1,16 +1,21 @@
 
 from django_filters import rest_framework as filters
+import django_filters
 from product.models import *
 
 class ProductFilter(filters.FilterSet):
-    name = filters.CharFilter(field_name="name", lookup_expr='icontains')
+    tag = django_filters.CharFilter(field_name='tag')
+    store = django_filters.CharFilter(field_name='store')
+    category = django_filters.CharFilter(field_name='category')
 
     class Meta:
         model = Product
-        fields = ['name', ]
+        fields = ['tag','store','category']
 class SavingsEntryFilter(filters.FilterSet):
-    name = filters.CharFilter(field_name="name", lookup_expr='icontains')
+    tag = django_filters.CharFilter(field_name='product__tag')
+    store = django_filters.CharFilter(field_name='product__store')
+    category = django_filters.CharFilter(field_name='product__category')
 
     class Meta:
         model = SavingsEntry
-        fields = ['name', ]
+        fields = ['tag', 'store', 'category']
