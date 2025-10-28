@@ -15,6 +15,8 @@ urlpatterns = [
 	path('api/v1/product/update/<int:pk>', views.updateProduct),
 
 	path('api/v1/product/delete/<int:pk>', views.deleteProduct),
+    
+	path('api/live-affiliate-products/', views.getLiveAffiliateProducts),
 
 
 ]

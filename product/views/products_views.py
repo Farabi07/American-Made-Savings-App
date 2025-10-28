@@ -12,6 +12,7 @@ from product.models import Product
 from product.serializers import ProductSerializer, ProductListSerializer
 from product.filters import ProductFilter
 from commons.pagination import Pagination
+from product.services.live_affiliate_products import fetch_live_affiliate_products
 
 # Create your views here.
 
@@ -189,3 +190,19 @@ def updateProduct(request,pk):
 			return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 	except ObjectDoesNotExist:
 		return Response({'detail': f'Product id - {pk} doesn\'t exists'}, status=status.HTTP_400_BAD_REQUEST)
+
+
+@extend_schema(
+    parameters=[
+        OpenApiParameter("query"),
+        OpenApiParameter("tag"),
+    ],
+    responses=ProductListSerializer
+)
+@api_view(['GET'])
+def getLiveAffiliateProducts(request):
+    query = request.GET.get('query', None)
+    tag = request.GET.get('tag', None)
+    products = fetch_live_affiliate_products(query=query, tag_filter=tag)
+    # For demo, just return raw dicts; in production, use a serializer
+    return Response({'products': products}, status=status.HTTP_200_OK)

@@ -201,7 +201,6 @@ def track_purchase(request, product_id):
     
     # Create savings entry
     from product.models import SavingsEntry
-    
     savings_entry = SavingsEntry.objects.create(
         created_by=request.user,
         product=product,

@@ -388,3 +388,20 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# Affiliate Network Credentials
+AMAZON_API_KEY = os.getenv('AMAZON_API_KEY', default='')
+AMAZON_API_SECRET = os.getenv('AMAZON_API_SECRET', default='')
+AMAZON_AFFILIATE_TAG = os.getenv('AMAZON_AFFILIATE_TAG', default='')
+
+WALMART_API_KEY = os.getenv('WALMART_API_KEY', default='')
+WALMART_AFFILIATE_ID = os.getenv('WALMART_AFFILIATE_ID', default='')
+
+IMPACT_API_KEY = os.getenv('IMPACT_API_KEY', default='')
+IMPACT_ACCOUNT_SID = os.getenv('IMPACT_ACCOUNT_SID', default='')
+IMPACT_AUTH_TOKEN = os.getenv('IMPACT_AUTH_TOKEN', default='')
+
+CJ_API_KEY = os.getenv('CJ_API_KEY', default='')
+CJ_WEBSITE_ID = os.getenv('CJ_WEBSITE_ID', default='')
+
+RAKUTEN_API_KEY = os.getenv('RAKUTEN_API_KEY', default='')
+RAKUTEN_AFFILIATE_ID = os.getenv('RAKUTEN_AFFILIATE_ID', default='')
