@@ -45,3 +45,28 @@ class SavingsEntry(models.Model):
         super(SavingsEntry, self).save(*args, **kwargs)
     def __str__(self):
         return f"Savings on {self.product.name} - ${self.savings:.2f}"
+    
+class AnalyticsEvent(models.Model):
+    EVENT_TYPES = (
+        ('store_click', 'Store Click'),
+        ('list_create', 'List Create'),
+        ('list_reorder', 'List Reorder'),
+        ('savings_add', 'Savings Add'),
+        ('paywall_view', 'Paywall View'),
+        ('subscribe_success', 'Subscribe Success'),
+    )
+    
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)
+    event_type = models.CharField(max_length=50, choices=EVENT_TYPES)
+    product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True, blank=True)
+    metadata = models.JSONField(default=dict, blank=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    ip_address = models.GenericIPAddressField(null=True, blank=True)
+    user_agent = models.TextField(blank=True, null=True)
+    
+    class Meta:
+        ordering = ['-timestamp']
+        indexes = [
+            models.Index(fields=['event_type', '-timestamp']),
+            models.Index(fields=['user', '-timestamp']),
+        ]

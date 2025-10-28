@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django_currentuser.middleware import get_current_authenticated_user
-from .models import Product, SavingsEntry
+from .models import AnalyticsEvent, Product, SavingsEntry
 
 class ProductListSerializer(serializers.ModelSerializer):
     created_by = serializers.SerializerMethodField()
@@ -80,3 +80,8 @@ class SavingsEntrySerializer(serializers.ModelSerializer):
             model_object.updated_by = user
         model_object.save()
         return model_object
+    
+class AnalyticsEventSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AnalyticsEvent
+        fields = '__all__'

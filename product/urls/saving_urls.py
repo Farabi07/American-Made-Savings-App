@@ -17,6 +17,7 @@ urlpatterns = [
 	path('api/v1/saving/delete/<int:pk>', views.deleteSavingsEntry),
     path('api/v1/saving/track/', views.track_savings),
     path('api/v1/saving/export/', views.export_savings),
+    path('api/v1/saving/total/', views.get_total_savings),
 
 
 ]

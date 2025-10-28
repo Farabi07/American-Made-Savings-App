@@ -223,3 +223,8 @@ def export_savings(request):
         writer.writerow([save.product.name, save.regular_price, save.affiliate_price, save.savings, save.date_saved])
 
     return response
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_total_savings(request):
+    total = SavingsEntry.objects.filter(created_by=request.user).aggregate(total_savings=models.Sum('savings'))['total_savings'] or 0
+    return Response({'total_savings': float(total)}, status=status.HTTP_200_OK)

@@ -27,8 +27,8 @@ from commons.pagination import Pagination
 # @permission_classes([IsAuthenticated])
 # @has_permissions([ProductEnum.PERMISSION_LIST.name])
 def getAllProduct(request):
-	permissions = Product.objects.all()
-	total_elements = permissions.count()
+	products = Product.objects.all()
+	total_elements = products.count()
 
 	page = request.query_params.get('page')
 	size = request.query_params.get('size')
@@ -37,12 +37,12 @@ def getAllProduct(request):
 	pagination = Pagination()
 	pagination.page = page
 	pagination.size = size
-	permissions = pagination.paginate_data(permissions)
+	products = pagination.paginate_data(products)
 
-	serializer = ProductListSerializer(permissions, many=True)
+	serializer = ProductListSerializer(products, many=True)
 
 	response = {
-		'permissions': serializer.data,
+		'products': serializer.data,
 		'page': pagination.page,
 		'size': pagination.size,
 		'total_pages': pagination.total_pages,
@@ -66,11 +66,11 @@ def getAllProduct(request):
 # @permission_classes([IsAuthenticated])
 # @has_permissions([ProductEnum.PERMISSION_LIST.name])
 def getAllProductWithoutPagination(request):
-	permissions = Product.objects.all()
+	products = Product.objects.all()
 
-	serializer = ProductListSerializer(permissions, many=True)
+	serializer = ProductListSerializer(products, many=True)
 
-	return Response({'permissions': serializer.data}, status=status.HTTP_200_OK)
+	return Response({'products': serializer.data}, status=status.HTTP_200_OK)
 
 
 @extend_schema(request=ProductSerializer, responses=ProductSerializer)
@@ -94,12 +94,12 @@ def getAProduct(request, pk):
 # @has_permissions([ProductEnum.PRODUCT_DETAILS.name])
 def searchProduct (request):
 
-	permissions = ProductFilter(request.GET, queryset=Product .objects.all())
-	permissions = permissions.qs
+	products = ProductFilter(request.GET, queryset=Product .objects.all())
+	products = products.qs
 
-	print('permissions: ', permissions)
+	print('products: ', products)
 
-	total_elements = permissions.count()
+	total_elements = products.count()
 
 	page = request.query_params.get('page')
 	size = request.query_params.get('size')
@@ -108,22 +108,22 @@ def searchProduct (request):
 	pagination = Pagination()
 	pagination.page = page
 	pagination.size = size
-	permissions = pagination.paginate_data(permissions)
+	products = pagination.paginate_data(products)
 
-	serializer = ProductListSerializer(permissions, many=True)
+	serializer = ProductListSerializer(products, many=True)
 
 	response = {
-		'permissions': serializer.data,
+		'products': serializer.data,
 		'page': pagination.page,
 		'size': pagination.size,
 		'total_pages': pagination.total_pages,
 		'total_elements': total_elements,
 	}
 
-	if len(permissions) > 0:
+	if len(products) > 0:
 		return Response(response, status=status.HTTP_200_OK)
 	else:
-		return Response({'detail': f"There are no permissions matching your search"}, status=status.HTTP_400_BAD_REQUEST)
+		return Response({'detail': f"There are no products matching your search"}, status=status.HTTP_400_BAD_REQUEST)
 
 
 @extend_schema(request=ProductSerializer, responses=ProductSerializer)

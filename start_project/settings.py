@@ -357,24 +357,19 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 SOCIALACCOUNT_STORE_TOKENS = True
-
 # Google Auth Settings
 SOCIAL_AUTH_GOOGLE_CLIENT_ID = os.getenv('SOCIAL_AUTH_GOOGLE_CLIENT_ID')
 SOCIAL_AUTH_GOOGLE_SECRET = os.getenv('SOCIAL_AUTH_GOOGLE_SECRET')
 GOOGLE_CALLBACK_URL = os.getenv("GOOGLE_CALLBACK_URL")
-# # Apple Auth Settings
-# # Now, you can access these values securely
+
+# Apple Auth Settings
 # APPLE_TEAM_ID = os.getenv("APPLE_TEAM_ID")
 # APPLE_CLIENT_ID = os.getenv("APPLE_CLIENT_ID")
 # APPLE_KEY_ID = os.getenv("APPLE_KEY_ID")
 # APPLE_PRIVATE_KEY_PATH = os.getenv("APPLE_PRIVATE_KEY_PATH")
 # APPLE_BUNDLE_ID = os.getenv("APPLE_BUNDLE_ID")
 # APPLE_CALLBACK_URL = os.getenv("APPLE_CALLBACK_URL")
-
-
-
 # AWS S3 Storage Configuration taskmamabucket
-
 
 AWS_REGION='eu-central-1'
 AWS_STORAGE_BUCKET_NAME='taskmamabucket'
@@ -387,11 +382,6 @@ DEFAULT_FILE_STORAGE = 'start_project.storage_backends.PublicMediaStorage'
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
-
-
-
- # This is the base directory for your project
-
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 

@@ -30,6 +30,7 @@ urlpatterns = [
     # Product module
     path('product/', include('product.urls.products_urls')),
     path('saving/', include('product.urls.saving_urls')),
+    path('analytics/', include('product.urls.analytics_urls')),
     path('schema/', SpectacularAPIView.as_view(), name='schema'),
     # Optional UI:
     path('schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
